@@ -1,0 +1,304 @@
+    <html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>微课表</title>
+        <style type="text/css">
+          * {
+            margin: 0, auto;
+            padding: 0;
+            font-family: "微软雅黑";
+            
+            
+        }
+        
+        .blacktab {
+            margin-top: 116px;
+            font-size: 2.1rem;
+            background-image: url(53759a00766ee.jpg); 
+            background-repeat: no-repeat; 
+            background-size: 100% 100%
+        }
+        
+        td {
+            border: 1px solid rgba(204, 204, 204, 0.22);
+            height: 140px;
+            table-layout: fixed;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .week {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            z-index: 100;
+            background-color: #0b61a4;
+            padding: 40px 0 40px 0px;
+            font-size: 2.4rem;
+            padding-left: 5.5%;
+            background-image: url(images.jpeg);
+            background-repeat: no-repeat; 
+            background-size: 100% 100%
+        }
+        
+        .day {
+            display: inline-block;
+            width: 12.5%;
+            /*   border: 1px solid black;*/
+            text-align: center;
+        }
+        #body_wrap{
+            display: none;
+        }
+
+
+        #login_wrap{
+            font-size:30px;
+            background-color:#eee;
+            background-size: 100% 100%;
+            height:100%;
+            
+        }
+        .header{
+            font-size:80px;
+            font-weight: bolder;
+            border-bottom:5px solid #ff8940;
+            padding:30px;
+
+        }
+        
+        .login{
+            text-align: center;
+            margin:40px;
+            margin-top: 100px;
+            margin-bottom: 200px;
+            
+        }
+        .num{
+            padding:30px 10px;
+            width:98%;
+            margin-bottom: 20px;
+            background-color:white;
+        }
+        .pass
+        {
+            width:98%;
+            padding:30px 10px;
+            background-color:white;
+        }
+        #import{
+            padding:20px;
+            width:98%;
+            margin:60px 0;
+            background-color:#ffcc99;
+            font-size:50px;
+            border-radius: 20px;
+            border:1px solid #ff8940;
+            box-shadow: 5px 5px 5px #ff8940;
+        }
+        #pic{
+            display:none;
+            width:98%;
+        }
+        img{
+            float:left;
+        }
+        .code{
+         padding:30px 10px;
+         background-color:white;
+         width:45%;
+         margin:20px;
+     }
+     #confirm{
+        float:right;
+        padding:20px;
+        margin:35px;
+        font-size:40px;
+        border-radius:20px;
+        border:1px solid #ff8940;
+        background-color:#ffcc99;
+    }
+</style>
+<script src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#import").click(function(){
+        $("#check_img").attr("src","http://10.254.152.63:4567/getCheckCode/scnu")
+        $("#pic").show();
+    });
+
+    $("#confirm").click(function(){
+        $("#login_wrap").hide();
+        $("#body_wrap").show();
+    });
+    
+});
+  
+  var a= document.getElementsByName("username");
+  var b=document.getElementsByName("password");
+  var c=document.getElementsByName("check_img");
+  var p="http://localhost:4567/authKB/V1/scnu/"+a+"/"+b+"/"+c;
+  console.log(a);
+
+
+  $(document).ready(function() {
+    $("td").each(function() {
+        var a = $(this).context.innerText.length;
+              // console.log($(this));
+               //console.log($(this).context.innerText.length);background-color": "#3ba3d0
+
+               switch(true)
+               {
+                  case(a>23):$(this).css({"background-color": "rgba(136, 119, 255,0.6)"});break;
+                  case(a>20&&a<=22):$(this).css({"background-color": "#ff9f00"});break;
+                  case(a==20):$(this).css({"background-color": "rgba(129, 208, 120, 0.6)"});break;
+                  case(a==19):$(this).css({"background-color": "rgba(0, 164, 128, 0.6)"});break;
+                  case(a==18):$(this).css({"background-color": "rgba(112, 222, 215, 0.6)"});break;
+                  case(a==17):$(this).css({"background-color": "rgba(59, 163, 208, 0.6)"});break;
+                  case(a==16):$(this).css({"background-color": "rgba(255, 137, 64, 0.6)"});break;
+                  case(a==15):$(this).css({"background-color": "rgba(230, 224, 22, 0.6)"});break;
+                  case(a==14):$(this).css({"background-color": "rgba(67, 128, 211, 0.6)"});break;
+                  case(a>12&&a<=14):$(this).css({"background-color": "rgba(204, 153, 255,0.6)"});break;
+                  case(a>10&&a<=12):$(this).css({"background-color": "rgba(204, 85, 136,0.6)"});break;
+                  default:break;
+              }
+              
+          });
+
+});
+</script>
+</head>
+<body>
+    <div id="login_wrap">
+        <div class="header">Login</div>
+        <div class="login">
+
+            <input type="text" class="num" name="username" width="100%" placeholder="请输入教务系统账号" >
+
+            <input type="password" class="pass" name="password"placeholder="请输入教务系统密码">
+
+            <button id="import" type="button">导入课程</button>
+        </div>
+        <div id="pic" >
+          <img name="check_img" src="face.png"  width="50%">
+          <input type="text" class="code" name="verify" width="50%" placeholder="请输入验证码" >
+          <button id="confirm" type="button">确定</button>
+      </div>
+  </div>
+
+  <div id="body_wrap">
+    <div class="week">
+        <div class="day">周一</div>
+        <div class="day">周二</div>
+        <div class="day">周三</div>
+        <div class="day">周四</div>
+        <div class="day">周五</div>
+        <div class="day">周六</div>
+        <div class="day">周日</div>
+    </div>
+    <table class="blacktab">
+        <tbody>
+            <tr> 
+               <td width="1%">第1节</td>
+               <td align="Center" width="7%">&nbsp;</td>
+               <td align="Center" rowspan="2" width="7%">数字图像处理<br />郑楚君<br />1－101 </td>
+               <td align="Center" rowspan="2" width="7%">电器与可编程控制<br />黄鑫<br />3－203 </td>
+               <td align="Center" rowspan="2" width="7%">数据仓库与数据挖掘技术<br />薛云<br />3－103 </td>
+
+               <td align="Center" rowspan="2" width="7%">网络与通信程序设计<br />唐小煜<br />3－206 </td>
+               <td class="noprint" align="Center" width="7%">&nbsp;</td>
+               <td class="noprint" align="Center" width="7%">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第2节</td>
+               <td align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第3节</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">数字图像处理<br />郑楚君<br />1－101 </td>
+               <td align="Center" rowspan="2">形势与政策<br />曾璐<br />1－203 </td>
+               <td align="Center" rowspan="2">IT项目管理<br />占履军<br />1－201 </td>
+               <td align="Center">网络与通信程序设计<br />唐小煜<br />3－206 </td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第4节</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第5节</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center" rowspan="2">光电技术与光纤基础<br />黄佐华<br />1－201 </td>
+               <td align="Center" rowspan="2">数字电视<br />周卫星<br />1－105 </td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center" rowspan="2">计算机网络<br />刘寿强<br />2－302 </td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第6节</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第7节</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">光电技术与光纤基础<br />黄佐华<br />1－201 </td>
+               <td align="Center">数字电视<br />周卫星<br />1－105 </td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">计算机网络<br />刘寿强<br />2－302 </td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第8节</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第9节</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center" rowspan="3">电子系统设计<br />钟清华/王德明<br />2－301 </td>
+               <td align="Center" rowspan="3">集成电路设计基础<br />王德明<br />5－104 </td>
+               <td align="Center" rowspan="3">生物起源与进化<br />何风华<br />1－203 </td>
+               <td align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第10节</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+           <tr> 
+               <td>第11节</td>
+               <td align="Center">&nbsp;</td>
+               <td align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td>
+               <td class="noprint" align="Center">&nbsp;</td> 
+           </tr>
+       </tbody>
+   </table>
+</div>
+</body>
+
+
+</html>
